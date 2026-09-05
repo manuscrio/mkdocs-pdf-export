@@ -1,0 +1,50 @@
+# Toolchain and commands for this repository. `mise install` provisions everything; `mise tasks`
+# lists what you can run.
+#
+# python  builds the example site with MkDocs and the Material theme
+# node    runs the `manuscrio` npm wrapper through npx
+#
+# Both versions match the ones .github/workflows/example.yml uses, so a local run and a CI run are
+# the same run. Exporting also needs Docker or Podman, which mise does not provision: the
+# `manuscrio` command is a thin wrapper that runs the engine image.
+
+[tools]
+python = "3.13"
+node = "24"
+
+# Keeps MkDocs and its theme out of the system interpreter. The directory is gitignored.
+[env]
+_.python.venv = { path = "example/.venv", create = true }
+
+[tasks.install]
+description = "Install MkDocs and the Material theme into example/.venv"
+dir = "example"
+run = "pip install -r requirements.txt"
+
+[tasks.build]
+description = "Build the example MkDocs site into example/site"
+depends = ["install"]
+dir = "example"
+run = "mkdocs build"
+
+[tasks.dev]
+description = "Run the example site's dev server"
+depends = ["install"]
+dir = "example"
+run = "mkdocs serve"
+
+[tasks.inspect]
+description = "Report what manuals the example build contains. MkDocs reports an empty logo"
+depends = ["build"]
+run = "npx --yes manuscrio@0.1.0 inspect example/site"
+
+# --logo is not optional here. Material's mark is not readable from the built markup, so without
+# it the manual carries none.
+[tasks.export]
+description = "Export the example build to PDF manuals, one per edition"
+depends = ["build"]
+run = """
+npx --yes manuscrio@0.1.0 export example/site \
+  --logo example/docs/assets/logo.svg \
+  --output-dir manuscrio-output
+"""

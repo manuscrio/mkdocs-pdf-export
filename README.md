@@ -67,6 +67,17 @@ latest run](https://github.com/manuscrio/mkdocs-pdf-export/actions/workflows/exa
 
 Copy it, or copy just the workflow.
 
+To drive it locally, the repository carries a [mise](https://mise.jdx.dev) config pinning the same
+Python and Node versions CI uses, and creating the virtualenv for you:
+
+```bash
+mise trust     # mise asks before running a config it has not seen before
+mise install
+mise run build      # build the example site
+mise run inspect    # what manuals does this build contain?
+mise run export     # one manual per edition, with --logo
+```
+
 ## Editions and scopes
 
 An edition is one plugin instance, one locale and one version. MkDocs has neither plugin instances
