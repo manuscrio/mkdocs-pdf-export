@@ -41,6 +41,7 @@ jobs:
         run: |
           npx --yes manuscrio@0.1.0 export example/site \
             --logo example/docs/assets/logo.svg \
+            --theme lapis \
             --output-dir manuscrio-output
 
       - uses: actions/upload-artifact@v7

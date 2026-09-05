@@ -14,10 +14,14 @@ You need Docker or Podman; the `manuscrio` command is a thin wrapper that runs t
 
 ```bash
 mkdocs build
-npx manuscrio@0.1.0 export ./site --logo ./docs/assets/logo.svg
+npx manuscrio@0.1.0 export ./site --logo ./docs/assets/logo.svg --theme lapis
 ```
 
 That writes one PDF per documentation edition into `./manuscrio-output`.
+
+`--theme lapis` sets the accent on top-level chapter titles and the contents table. Five themes
+ship, named for mineral pigments; the default `ink` carries no accent at all, so an unthemed manual
+stays readable printed in greyscale. See [Branding](https://manuscrio.com/docs/branding/).
 
 ## Material, specifically
 
@@ -47,6 +51,7 @@ header. `manuscrio inspect ./site` reports an empty `logo` field, which is what 
   run: |
     npx --yes manuscrio@0.1.0 export site \
       --logo docs/assets/logo.svg \
+      --theme lapis \
       --output-dir manuscrio-output
 
 - uses: actions/upload-artifact@v7
