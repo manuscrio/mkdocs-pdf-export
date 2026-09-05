@@ -1,0 +1,30 @@
+# A deliberately small MkDocs site, used to demonstrate a PDF export end to end.
+#
+# The theme is Material, deliberately. MkDocs itself prescribes no markup -- the theme supplies
+# all of it -- so an exporter reads a theme rather than MkDocs. Manuscrio reads Material.
+site_name: Orbit
+site_description: Telemetry for fleets that move
+site_url: https://example.com/
+
+theme:
+  name: material
+  logo: assets/logo.svg
+  favicon: assets/logo.svg
+  features:
+    - navigation.sections
+
+nav:
+  - Introduction: index.md
+  - Installation: install.md
+  - Guides:
+      - Configuration: guides/configuration.md
+      - Deployment: guides/deployment.md
+  - Reference:
+      - Command line: reference/cli.md
+      - HTTP API: reference/api.md
+
+markdown_extensions:
+  - admonition
+  - tables
+  - pymdownx.superfences
+  - pymdownx.highlight

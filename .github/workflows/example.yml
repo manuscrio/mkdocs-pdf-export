@@ -1,0 +1,50 @@
+# Builds the example MkDocs Material site and exports it to a PDF manual, using the published
+# Manuscrio wrapper exactly as the README tells you to. The scheduled run is the point: if a
+# release breaks MkDocs detection, this job goes red before a customer finds out.
+name: Export the example to PDF
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 6 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: example/requirements.txt
+
+      - name: Build the MkDocs site
+        working-directory: example
+        run: |
+          pip install -r requirements.txt
+          mkdocs build
+
+      # Material does not describe its logo in a way the adapter reads, so --logo supplies the
+      # mark for the cover and the running header. Without it the manual carries none.
+      #
+      # No licence is supplied, so the manuals carry the evaluation watermark. That is
+      # deliberate: a licence is a bearer token and does not belong in a public repository.
+      - name: Export the build to PDF
+        run: |
+          npx --yes manuscrio@0.1.0 export example/site \
+            --logo example/docs/assets/logo.svg \
+            --output-dir manuscrio-output
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: orbit-manual
+          path: manuscrio-output/*.pdf
+          if-no-files-found: error
