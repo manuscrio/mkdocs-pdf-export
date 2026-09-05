@@ -38,11 +38,11 @@ jobs:
       # No licence is supplied, so the manuals carry the evaluation watermark. That is
       # deliberate: a licence is a bearer token and does not belong in a public repository.
       - name: Export the build to PDF
-        run: |
-          npx --yes manuscrio@0.1.0 export example/site \
-            --logo example/docs/assets/logo.svg \
-            --theme lapis \
-            --output-dir manuscrio-output
+        uses: ./
+        with:
+          build: example/site
+          logo: example/docs/assets/logo.svg
+          theme: lapis
 
       - uses: actions/upload-artifact@v7
         with:
