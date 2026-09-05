@@ -49,7 +49,7 @@ This repository **is** a GitHub Action. Point it at the directory your build pro
 ```yaml
 - run: pip install -r requirements.txt && mkdocs build
 
-- uses: manuscrio/mkdocs-pdf-export@v1
+- uses: manuscrio/mkdocs-pdf-export@v0.1
   with:
     build: site
     logo: docs/assets/logo.svg
@@ -120,7 +120,7 @@ deliberately: a licence is a bearer token and does not belong in a public reposi
 In a real pipeline, supply one from a secret:
 
 ```yaml
-- uses: manuscrio/mkdocs-pdf-export@v1
+- uses: manuscrio/mkdocs-pdf-export@v0.1
   with:
     license: ${{ secrets.MANUSCRIO_LICENSE }}
 ```
