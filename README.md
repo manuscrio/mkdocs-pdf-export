@@ -14,7 +14,7 @@ You need Docker or Podman; the `manuscrio` command is a thin wrapper that runs t
 
 ```bash
 mkdocs build
-npx manuscrio@0.1.0 export ./site --logo ./docs/assets/logo.svg --theme lapis
+npx manuscrio@1.0.0 export ./site --logo ./docs/assets/logo.svg --theme lapis
 ```
 
 That writes one PDF per documentation edition into `./manuscrio-output`.
@@ -48,7 +48,7 @@ header. `manuscrio inspect ./site` reports an empty `logo` field, which is what 
 - run: pip install -r requirements.txt && mkdocs build
 
 - name: Export the docs to PDF
-  run: npx --yes manuscrio@0.1.0 export site \
+  run: npx --yes manuscrio@1.0.0 export site \
         --logo docs/assets/logo.svg \
         --theme lapis \
         --output-dir manuscrio-output
@@ -114,7 +114,7 @@ shared runner:
   env:
     MANUSCRIO_LICENSE: ${{ secrets.MANUSCRIO_LICENSE }}
   run: |
-    npx --yes manuscrio@0.1.0 export site \
+    npx --yes manuscrio@1.0.0 export site \
       --logo docs/assets/logo.svg \
       --output-dir manuscrio-output
 ```

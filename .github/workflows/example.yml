@@ -39,7 +39,7 @@ jobs:
       # deliberate: a licence is a bearer token and does not belong in a public repository.
       - name: Export the build to PDF
         run: |
-          npx --yes manuscrio@0.1.0 export example/site \
+          npx --yes manuscrio@1.0.0 export example/site \
             --logo example/docs/assets/logo.svg \
             --theme lapis \
             --output-dir manuscrio-output

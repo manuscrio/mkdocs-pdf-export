@@ -36,7 +36,7 @@ run = "mkdocs serve"
 [tasks.inspect]
 description = "Report what manuals the example build contains. MkDocs reports an empty logo"
 depends = ["build"]
-run = "npx --yes manuscrio@0.1.0 inspect example/site"
+run = "npx --yes manuscrio@1.0.0 inspect example/site"
 
 # --logo is not optional here. Material's mark is not readable from the built markup, so without
 # it the manual carries none.
@@ -44,7 +44,7 @@ run = "npx --yes manuscrio@0.1.0 inspect example/site"
 description = "Export the example build to PDF manuals, one per edition"
 depends = ["build"]
 run = """
-npx --yes manuscrio@0.1.0 export example/site \
+npx --yes manuscrio@1.0.0 export example/site \
   --logo example/docs/assets/logo.svg \
   --theme lapis \
   --output-dir manuscrio-output
