@@ -3,6 +3,11 @@
 Export a built **MkDocs** site using the **Material** theme to complete, publication-ready PDF
 manuals.
 
+**This repository is a runnable example, not a library or a plugin.** It holds a small MkDocs
+Material site and the command that turns its build into a PDF, so you can watch the whole thing
+work before pointing it at your own docs. Manuscrio is the product it demonstrates:
+[manuscrio.com](https://manuscrio.com).
+
 [![Export the example to PDF](https://github.com/manuscrio/mkdocs-pdf-export/actions/workflows/example.yml/badge.svg)](https://github.com/manuscrio/mkdocs-pdf-export/actions/workflows/example.yml)
 
 Manuscrio reads the **build directory** — the `site/` that `mkdocs build` produces. No plugin, no
@@ -18,6 +23,9 @@ npx manuscrio@1.0.0 export ./site --logo ./docs/assets/logo.svg --theme lapis
 ```
 
 That writes one PDF per documentation edition into `./manuscrio-output`.
+
+Every command and option it accepts is listed in the
+[CLI reference](https://manuscrio.com/docs/cli/).
 
 `--theme lapis` sets the accent on top-level chapter titles and the contents table. Five themes
 ship, named for mineral pigments; the default `ink` carries no accent at all, so an unthemed manual
