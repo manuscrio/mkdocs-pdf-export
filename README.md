@@ -15,11 +15,11 @@ Manuscrio reads the **build directory** — the `site/` that `mkdocs build` prod
 
 ## Try it
 
-You need Docker or Podman; the `manuscrio` command is a thin wrapper that runs the engine image.
+You need Docker or Podman; the `manuscrio-pdf` command is a thin wrapper that runs the engine image.
 
 ```bash
 mkdocs build
-npx manuscrio@1.0.0 export ./site --logo ./docs/assets/logo.svg --theme lapis
+npx manuscrio-pdf-pdf@1.0.0 export ./site --logo ./docs/assets/logo.svg --theme lapis
 ```
 
 That writes one PDF per documentation edition into `./manuscrio-output`.
@@ -48,7 +48,7 @@ produces a plausible PDF missing content nobody notices until a customer does.
 
 Material's logo is not described in the built markup in a way an exporter can read, so Manuscrio
 finds none and the manual carries no mark. `--logo` supplies one for the cover and the running
-header. `manuscrio inspect ./site` reports an empty `logo` field, which is what that means.
+header. `manuscrio-pdf inspect ./site` reports an empty `logo` field, which is what that means.
 
 ## In GitHub Actions
 
@@ -56,7 +56,7 @@ header. `manuscrio inspect ./site` reports an empty `logo` field, which is what 
 - run: pip install -r requirements.txt && mkdocs build
 
 - name: Export the docs to PDF
-  run: npx --yes manuscrio@1.0.0 export site \
+  run: npx --yes manuscrio-pdf@1.0.0 export site \
         --logo docs/assets/logo.svg \
         --theme lapis \
         --output-dir manuscrio-output
@@ -113,16 +113,16 @@ With no licence, Manuscrio produces **complete** manuals carrying an evaluation 
 is truncated and no feature is withheld. The PDF this repository's CI publishes is watermarked,
 deliberately: a licence is a bearer token and does not belong in a public repository.
 
-In a real pipeline, supply one from a secret. The wrapper passes `MANUSCRIO_LICENSE` to the
+In a real pipeline, supply one from a secret. The wrapper passes `MANUSCRIO_PDF_LICENSE` to the
 container **by name**, so the licence text never appears in a command line or in `ps` output on a
 shared runner:
 
 ```yaml
 - name: Export the docs to PDF
   env:
-    MANUSCRIO_LICENSE: ${{ secrets.MANUSCRIO_LICENSE }}
+    MANUSCRIO_PDF_LICENSE: ${{ secrets.MANUSCRIO_PDF_LICENSE }}
   run: |
-    npx --yes manuscrio@1.0.0 export site \
+    npx --yes manuscrio-pdf@1.0.0 export site \
       --logo docs/assets/logo.svg \
       --output-dir manuscrio-output
 ```
@@ -152,4 +152,4 @@ repository and nothing else.
 
 ---
 
-[manuscrio.com](https://manuscrio.com) · [`manuscrio` on npm](https://www.npmjs.com/package/manuscrio) · [Docusaurus](https://github.com/manuscrio/docusaurus-pdf-export) · [Starlight](https://github.com/manuscrio/starlight-pdf-export)
+[manuscrio.com](https://manuscrio.com) · [`manuscrio` on npm](https://www.npmjs.com/package/manuscrio-pdf) · [Docusaurus](https://github.com/manuscrio/docusaurus-pdf-export) · [Starlight](https://github.com/manuscrio/starlight-pdf-export)
