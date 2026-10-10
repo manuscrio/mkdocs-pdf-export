@@ -19,7 +19,7 @@ You need Docker or Podman; the `manuscrio-pdf` command is a thin wrapper that ru
 
 ```bash
 mkdocs build
-npx manuscrio-pdf-pdf@1.0.0 export ./site --logo ./docs/assets/logo.svg --theme lapis
+npx manuscrio-pdf@1.0.0 export ./site --logo ./docs/assets/logo.svg --theme lapis
 ```
 
 That writes one PDF per documentation edition into `./manuscrio-output`.
@@ -152,4 +152,4 @@ repository and nothing else.
 
 ---
 
-[manuscrio.com](https://manuscrio.com) · [`manuscrio` on npm](https://www.npmjs.com/package/manuscrio-pdf) · [Docusaurus](https://github.com/manuscrio/docusaurus-pdf-export) · [Starlight](https://github.com/manuscrio/starlight-pdf-export)
+[manuscrio.com](https://manuscrio.com) · [`manuscrio-pdf` on npm](https://www.npmjs.com/package/manuscrio-pdf) · [Docusaurus](https://github.com/manuscrio/docusaurus-pdf-export) · [Starlight](https://github.com/manuscrio/starlight-pdf-export)
